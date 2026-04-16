@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Little Moon</title>
+  <meta
+    name="description"
+    content="Decoração personalizada para quartos de bebé, presentes especiais e ambientes suaves, elegantes e cheios de personalidade."
+  />
+  <style>
+    :root{
+      --bg: #fcf7f2;
+      --bg-soft: #fffaf7;
+      --surface: #ffffff;
+      --surface-2: #f9f1eb;
+      --text: #6d5d54;
+      --text-soft: #8f7d72;
+      --title: #5f5048;
+      --pink: #e5b8be;
+      --pink-deep: #d79ca6;
+      --blush: #f3d7d8;
+      --beige: #ead7c7;
+      --cream: #f7efe7;
+      --warm: #c39b85;
+      --line: #eee1d7;
+      --line-soft: #f3e8df;
+      --shadow-sm: 0 8px 22px rgba(153, 124, 106, 0.08);
+      --shadow-md: 0 16px 40px rgba(153, 124, 106, 0.12);
+      --shadow-lg: 0 24px 60px rgba(153, 124, 106, 0.14);
+      --radius-sm: 18px;
+      --radius-md: 24px;
+      --radius-lg: 34px;
+      --container: 1160px;
+    }
+
+    *{
+      box-sizing: border-box;
+    }
+
+    html{
+      scroll-behavior: smooth;
+    }
+
+    body{
+      margin: 0;
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 10% 12%, rgba(229, 184, 190, 0.15) 0 120px, transparent 120px),
+        radial-gradient(circle at 88% 15%, rgba(234, 215, 199, 0.22) 0 160px, transparent 160px),
+        linear-gradient(180deg, #fdfaf7 0%, var(--bg) 100%);
+      overflow-x: hidden;
+      line-height: 1.5;
+    }
+
+    a{
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img{
+      display: block;
+      max-width: 100%;
+    }
+
+    .site-shell{
+      position: relative;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    .container{
+      width: min(var(--container), calc(100% - 32px));
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Decorative background */
+    .decor-layer{
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .decor-cloud{
+      position: absolute;
+      background: rgba(255,255,255,0.6);
+      border: 1px solid rgba(243, 232, 223, 0.8);
+      filter: blur(0.2px);
+      box-shadow: 0 20px 40px rgba(180, 160, 145, 0.05);
+    }
+
+    .decor-cloud::before,
+    .decor-cloud::after{
+      content: "";
+      position: absolute;
+      background: inherit;
+      border: inherit;
+      border-radius: 50%;
+    }
+
+    .decor-cloud{
+      border-radius: 999px;
+      height: 42px;
+      width: 120px;
+    }
+
+    .decor-cloud::before{
+      width: 46px;
+      height: 46px;
+      left: 16px;
+      top: -18px;
+    }
+
+    .decor-cloud::after{
+      width: 58px;
+      height: 58px;
+      right: 16px;
+      top: -24px;
+    }
+
+    .cloud-1{ top: 140px; left: -20px; transform: scale(1.1); opacity: 0.55; }
+    .cloud-2{ top: 560px; right: -10px; transform: scale(0.95); opacity: 0.45; }
+    .cloud-3{ top: 1120px; left: 6%; transform: scale(0.85); opacity: 0.38; }
+    .cloud-4{ top: 1680px; right: 8%; transform: scale(1.15); opacity: 0.42; }
+
+    .decor-moon{
+      position: absolute;
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: #fff8ef;
+      box-shadow: inset -12px -6px 0 0 #efd8bf, var(--shadow-sm);
+    }
+
+    .decor-moon::before{
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: -150px;
+      width: 1px;
+      height: 150px;
+      background: linear-gradient(180deg, transparent 0%, #dcc8b6 30%, #dcc8b6 100%);
+      transform: translateX(-50%);
+      opacity: 0.8;
+    }
+
+    .decor-moon::after{
+      content: "✦";
+      position: absolute;
+      right: -12px;
+      bottom: -10px;
+      font-size: 12px;
+      color: #e9c2ae;
+      opacity: 0.9;
+    }
+
+    .moon-1{ top: 40px; left: 7%; }
+    .moon-2{ top: 320px; right: 9%; transform: scale(0.9); }
+    .moon-3{ top: 980px; left: 10%; transform: scale(0.8); }
+    .moon-4{ top: 1540px; right: 12%; transform: scale(1.05); }
+
+    .decor-star{
+      position: absolute;
+      color: #f0cdb3;
+      font-size: 12px;
+      opacity: 0.55;
+    }
+
+    .star-1{ top: 250px; left: 18%; }
+    .star-2{ top: 690px; right: 18%; }
+    .star-3{ top: 1260px; left: 20%; }
+    .star-4{ top: 1730px; right: 20%; }
+
+    /* Header */
+    .site-header{
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(14px);
+      background: rgba(247, 239, 231, 0.82);
+      border-bottom: 1px solid rgba(238, 225, 215, 0.8);
+    }
+
+    .site-header__inner{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 14px 0;
+    }
+
+    .brand{
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .brand__logo{
+      width: 62px;
+      height: 62px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: var(--surface-2);
+      border: 4px solid rgba(255,255,255,0.92);
+      box-shadow: var(--shadow-sm);
+      flex-shrink: 0;
+    }
+
+    .brand__logo img{
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 4px;
+    }
+
+    .brand__name{
+      margin: 0;
+      font-family: "Brush Script MT", "Segoe Script", "Comic Sans MS", cursive;
+      font-size: 2rem;
+      line-height: 0.95;
+      color: var(--pink-deep);
+      font-weight: 400;
+      letter-spacing: 0.02em;
+    }
+
+    .brand__tagline{
+      margin: 4px 0 0;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: #b99d8c;
+      font-weight: 700;
+    }
+
+    .site-nav{
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .site-nav a{
+      font-size: 0.94rem;
+      font-weight: 600;
+      color: var(--text-soft);
+      transition: 0.2s ease;
+      padding: 8px 4px;
+    }
+
+    .site-nav a:hover{
+      color: var(--pink-deep);
+    }
+
+    .site-nav__highlight{
+      padding: 10px 16px !important;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--pink) 0%, var(--blush) 100%);
+      color: #fff !important;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .site-nav__highlight:hover{
+      background: linear-gradient(135deg, var(--pink-deep) 0%, var(--pink) 100%);
+    }
+
+    .nav-toggle{
+      display: none;
+      width: 46px;
+      height: 46px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--title);
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+
+    .mobile-nav{
+      display: none;
+      padding-bottom: 16px;
+    }
+
+    .mobile-nav.open{
+      display: block;
+    }
+
+    .mobile-nav a{
+      display: block;
+      padding: 12px 14px;
+      border-radius: 14px;
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .mobile-nav a:hover{
+      background: rgba(255,255,255,0.7);
+    }
+
+    /* Hero */
+    .hero{
+      padding: 40px 0 24px;
+    }
+
+    .hero__card{
+      display: grid;
+      grid-template-columns: 1.02fr 0.98fr;
+      gap: 32px;
+      align-items: center;
+      background: linear-gradient(135deg, rgba(255,255,255,0.94) 0%, rgba(255,248,244,0.98) 100%);
+      border: 1px solid rgba(238, 225, 215, 0.95);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero__card::before{
+      content: "";
+      position: absolute;
+      inset: auto auto -80px -80px;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(243,215,216,0.45) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero__card::after{
+      content: "";
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(234,215,199,0.5) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero__copy{
+      position: relative;
+      z-index: 2;
+      padding: 8px 4px;
+    }
+
+    .hero__eyebrow{
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: var(--cream);
+      color: var(--warm);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-weight: 800;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .hero__title{
+      margin: 20px 0 0;
+      font-size: 3.15rem;
+      line-height: 1.03;
+      letter-spacing: -0.035em;
+      color: var(--title);
+      max-width: 620px;
+    }
+
+    .hero__subtitle{
+      margin: 18px 0 0;
+      max-width: 560px;
+      font-size: 1.02rem;
+      line-height: 1.9;
+      color: var(--text-soft);
+    }
+
+    .hero__actions{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .button{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-radius: 999px;
+      padding: 13px 22px;
+      font-weight: 700;
+      transition: 0.22s ease;
+      white-space: nowrap;
+    }
+
+    .button--primary{
+      background: var(--pink);
+      color: #fff;
+      box-shadow: 0 12px 26px rgba(229, 184, 190, 0.34);
+    }
+
+    .button--primary:hover{
+      background: var(--pink-deep);
+      transform: translateY(-2px);
+    }
+
+    .button--secondary{
+      background: #fff;
+      color: var(--title);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .button--secondary:hover{
+      background: #fcf3ec;
+      transform: translateY(-2px);
+    }
+
+    .hero__notes{
+      display: grid;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .hero__note{
+      padding: 12px 14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(243, 232, 223, 0.95);
+      color: var(--text-soft);
+      font-size: 0.95rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .hero__media{
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-slider{
+      position: relative;
+    }
+
+    .hero-slider__viewport{
+      position: relative;
+      height: 420px;
+      overflow: hidden;
+      border-radius: 26px;
+    }
+
+    .hero-slide{
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-slide.active{
+      opacity: 1;
+    }
+
+    .hero-slide img{
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .hero-slider__dots{
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .hero-slider__dot{
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: #e4d3c8;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .hero-slider__dot.active{
+      width: 28px;
+      background: var(--pink);
+    }
+
+    /* Sections */
+    .section{
+      padding: 56px 0;
+      position: relative;
+    }
+
+    .section--soft{
+      background: linear-gradient(180deg, rgba(255,250,247,0.75) 0%, rgba(253,248,245,0.95) 100%);
+      border-top: 1px solid rgba(238,225,215,0.55);
+      border-bottom: 1px solid rgba(238,225,215,0.55);
+    }
+
+    .section__head{
+      margin-bottom: 26px;
+    }
+
+    .section__kicker{
+      margin: 0 0 8px;
+      color: var(--warm);
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      font-weight: 800;
+    }
+
+    .section__title{
+      margin: 0;
+      color: var(--title);
+      font-size: 2rem;
+      line-height: 1.14;
+      letter-spacing: -0.02em;
+    }
+
+    .section__lead{
+      margin: 12px 0 0;
+      max-width: 760px;
+      color: var(--text-soft);
+      line-height: 1.85;
+    }
+
+    .cards-grid{
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .product-card{
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      transition: transform 0.24s ease;
+    }
+
+    .product-card:hover{
+      transform: translateY(-5px);
+    }
+
+    .product-card__image{
+      height: 220px;
+      overflow: hidden;
+      background: var(--surface-2);
+    }
+
+    .product-card__image img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.45s ease;
+    }
+
+    .product-card:hover .product-card__image img{
+      transform: scale(1.05);
+    }
+
+    .product-card__body{
+      padding: 18px 18px 20px;
+    }
+
+    .product-card__title{
+      margin: 0;
+      font-size: 1.16rem;
+      color: var(--title);
+    }
+
+    .product-card__text{
+      margin: 10px 0 0;
+      color: var(--text-soft);
+      font-size: 0.94rem;
+      line-height: 1.72;
+    }
+
+    /* About */
+    .about-layout{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .about-visual{
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      padding: 18px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .about-visual img{
+      width: 100%;
+      height: 420px;
+      object-fit: contain;
+      border-radius: 22px;
+      background: linear-gradient(180deg, #fffaf7 0%, #f9f1eb 100%);
+      padding: 24px;
+    }
+
+    .about-copy h2{
+      margin: 0;
+      font-size: 2rem;
+      line-height: 1.14;
+      color: var(--title);
+    }
+
+    .about-copy p{
+      margin: 16px 0 0;
+      color: var(--text-soft);
+      line-height: 1.9;
+    }
+
+    .about-points{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .about-point{
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 16px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .about-point strong{
+      display: block;
+      color: var(--pink-deep);
+      font-size: 1.4rem;
+      margin-bottom: 6px;
+    }
+
+    .about-point span{
+      font-size: 0.92rem;
+      color: var(--text-soft);
+    }
+
+    /* CTA */
+    .cta{
+      padding: 18px 0 56px;
+    }
+
+    .cta__box{
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #fff 0%, #fff8f4 100%);
+      border: 1px solid var(--line);
+      border-radius: 32px;
+      box-shadow: var(--shadow-lg);
+      padding: 30px 24px;
+      text-align: center;
+    }
+
+    .cta__box::before{
+      content: "☁️";
+      position: absolute;
+      left: 24px;
+      top: 18px;
+      font-size: 28px;
+      opacity: 0.5;
+    }
+
+    .cta__box::after{
+      content: "🌙";
+      position: absolute;
+      right: 24px;
+      bottom: 16px;
+      font-size: 28px;
+      opacity: 0.5;
+    }
+
+    .cta__title{
+      margin: 0;
+      color: var(--title);
+      font-size: 2rem;
+      line-height: 1.15;
+    }
+
+    .cta__text{
+      margin: 14px auto 0;
+      max-width: 760px;
+      color: var(--text-soft);
+      line-height: 1.85;
+    }
+
+    .cta__actions{
+      margin-top: 22px;
+    }
+
+    /* Footer */
+    .site-footer{
+      margin-top: 8px;
+      border-top: 1px solid var(--line);
+      background: rgba(255,250,247,0.85);
+    }
+
+    .site-footer__grid{
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 24px;
+      padding: 34px 0;
+    }
+
+    .site-footer h4,
+    .site-footer strong{
+      color: var(--title);
+    }
+
+    .site-footer p,
+    .site-footer li{
+      color: var(--text-soft);
+      font-size: 0.94rem;
+      line-height: 1.8;
+    }
+
+    .site-footer ul{
+      list-style: none;
+      padding: 0;
+      margin: 10px 0 0;
+    }
+
+    .site-footer a:hover{
+      color: var(--pink-deep);
+    }
+
+    .site-footer__copyright{
+      text-align: center;
+      color: #aa9689;
+      font-size: 0.88rem;
+      border-top: 1px solid var(--line);
+      padding: 14px 0 24px;
+    }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .site-nav{
+        display: none;
+      }
+
+      .nav-toggle{
+        display: inline-flex;
+      }
+
+      .hero__card,
+      .about-layout{
+        grid-template-columns: 1fr;
+      }
+
+      .cards-grid{
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .site-footer__grid{
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero__title{
+        font-size: 2.4rem;
+      }
+    }
+
+    @media (max-width: 640px){
+      .brand__name{
+        font-size: 1.7rem;
+      }
+
+      .hero__card{
+        padding: 18px;
+      }
+
+      .hero__title,
+      .section__title,
+      .about-copy h2,
+      .cta__title{
+        font-size: 1.8rem;
+      }
+
+      .hero-slider__viewport{
+        height: 320px;
+      }
+
+      .cards-grid,
+      .about-points,
+      .site-footer__grid{
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="site-shell">
+    <div class="decor-layer" aria-hidden="true">
+      <div class="decor-cloud cloud-1"></div>
+      <div class="decor-cloud cloud-2"></div>
+      <div class="decor-cloud cloud-3"></div>
+      <div class="decor-cloud cloud-4"></div>
+
+      <div class="decor-moon moon-1"></div>
+      <div class="decor-moon moon-2"></div>
+      <div class="decor-moon moon-3"></div>
+      <div class="decor-moon moon-4"></div>
+
+      <div class="decor-star star-1">✦</div>
+      <div class="decor-star star-2">✦</div>
+      <div class="decor-star star-3">✦</div>
+      <div class="decor-star star-4">✦</div>
+    </div>
+
+    <header class="site-header">
+      <div class="container site-header__inner">
+        <a href="#inicio" class="brand">
+          <div class="brand__logo">
+            <img src="LOGOTIPO.png" alt="Little Moon" />
+          </div>
+          <div>
+            <p class="brand__name">Little Moon</p>
+            <p class="brand__tagline">Personalized Baby Decor</p>
+          </div>
+        </a>
+
+        <nav class="site-nav">
+          <a href="#inicio">Home</a>
+          <a href="#products">Products</a>
+          <a href="#best" class="site-nav__highlight">Best Seller</a>
+          <a href="#sobre">Sobre nós</a>
+          <a href="#contacto">Contactos</a>
+        </nav>
+
+        <button class="nav-toggle" id="navToggle" aria-label="Abrir menu">☰</button>
+      </div>
+
+      <div class="container mobile-nav" id="mobileNav">
+        <a href="#inicio">Home</a>
+        <a href="#products">Products</a>
+        <a href="#best">Best Seller</a>
+        <a href="#sobre">Sobre nós</a>
+        <a href="#contacto">Contactos</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="inicio">
+        <div class="container">
+          <div class="hero__card">
+            <div class="hero__copy">
+              <span class="hero__eyebrow">🌙 Decoração personalizada para bebés</span>
+              <h1 class="hero__title">
+                Peças delicadas e originais para dar ao quarto do seu bebé um encanto verdadeiramente especial.
+              </h1>
+              <p class="hero__subtitle">
+                Na Little Moon, cada criação é pensada para unir ternura, personalidade e elegância. Desenvolvemos nomes personalizados, candeeiros suaves e detalhes decorativos que transformam o quarto do bebé num espaço acolhedor, harmonioso e memorável.
+              </p>
+
+              <div class="hero__actions">
+                <a href="#products" class="button button--primary">Descobrir coleções</a>
+                <a href="#contacto" class="button button--secondary">Pedir personalizado</a>
+              </div>
+
+              <div class="hero__notes">
+                <div class="hero__note">☁️ Personalização com nome, estilo e tons suaves</div>
+                <div class="hero__note">🎀 Ideal para quartos de bebé, nascimento e baby shower</div>
+                <div class="hero__note">✨ Um visual delicado, exclusivo e pensado ao detalhe</div>
+              </div>
+            </div>
+
+            <div class="hero__media">
+              <div class="hero-slider">
+                <div class="hero-slider__viewport" id="heroSlider">
+                  <div class="hero-slide active">
+                    <img src="LETRA_RAPARIGA_TODOSCOMEXTRA.png" alt="Letras personalizadas" />
+                  </div>
+                  <div class="hero-slide">
+                    <img src="CANDEEIROPAREDE_NUVENSLUA_1.png" alt="Candeeiro decorativo" />
+                  </div>
+                  <div class="hero-slide">
+                    <img src="BONECOMESA_TODOSJUNTOS.png" alt="Peças decorativas de mesa" />
+                  </div>
+                </div>
+
+                <div class="hero-slider__dots" id="heroDots">
+                  <span class="hero-slider__dot active"></span>
+                  <span class="hero-slider__dot"></span>
+                  <span class="hero-slider__dot"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="products">
+        <div class="container">
+          <div class="section__head">
+            <p class="section__kicker">Coleções</p>
+            <h2 class="section__title">Tudo o que precisa para decorar com delicadeza, personalidade e bom gosto</h2>
+            <p class="section__lead">
+              Selecionámos peças pensadas para criar quartos de bebé mais acolhedores, elegantes e cheios de identidade, sempre com um acabamento suave e um toque especial de personalização.
+            </p>
+          </div>
+
+          <div class="cards-grid">
+            <article class="product-card">
+              <div class="product-card__image">
+                <img src="CANDEEIROPAREDE_NUVENSLUA_1.png" alt="Candeeiros" />
+              </div>
+              <div class="product-card__body">
+                <h3 class="product-card__title">Candeeiros</h3>
+                <p class="product-card__text">
+                  Luzes suaves e acolhedoras para criar um ambiente sereno, confortável e cheio de charme.
+                </p>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <div class="product-card__image">
+                <img src="LETRA_RAPARIGA_TODOSCOMEXTRA.png" alt="Nomes personalizados" />
+              </div>
+              <div class="product-card__body">
+                <h3 class="product-card__title">Nomes Personalizados</h3>
+                <p class="product-card__text">
+                  Letras e nomes decorativos que acrescentam identidade, ternura e exclusividade a cada espaço.
+                </p>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <div class="product-card__image">
+                <img src="DECORPAREDE_TODOSJUNTOS.png" alt="Decoração de parede" />
+              </div>
+              <div class="product-card__body">
+                <h3 class="product-card__title">Decoração Parede</h3>
+                <p class="product-card__text">
+                  Nuvens, luas, animais e elementos delicados para compor paredes leves, bonitas e harmoniosas.
+                </p>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <div class="product-card__image">
+                <img src="DECORPAREDE_RESULTADOFINAL.png" alt="Decoração de quarto" />
+              </div>
+              <div class="product-card__body">
+                <h3 class="product-card__title">Decoração Quarto</h3>
+                <p class="product-card__text">
+                  Conjuntos pensados para criar um ambiente completo, acolhedor e visualmente encantador.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--soft" id="sobre">
+        <div class="container about-layout">
+          <div class="about-visual">
+            <img src="LOGOTIPO.png" alt="Logótipo Little Moon" />
+          </div>
+
+          <div class="about-copy">
+            <p class="section__kicker">Sobre nós</p>
+            <h2>Na Little Moon, cada peça é criada para envolver o quarto do seu bebé em beleza, ternura e emoção.</h2>
+            <p>
+              Dedicamo-nos à criação de decoração personalizada para bebés com uma estética suave, elegante e intemporal. Trabalhamos cada detalhe com cuidado para que o resultado final não seja apenas bonito, mas também significativo — uma peça pensada para marcar momentos especiais e tornar cada espaço verdadeiramente único.
+            </p>
+
+            <div class="about-points">
+              <div class="about-point">
+                <strong>100%</strong>
+                <span>Personalizado</span>
+              </div>
+              <div class="about-point">
+                <strong>Soft</strong>
+                <span>Paleta delicada</span>
+              </div>
+              <div class="about-point">
+                <strong>Exclusivo</strong>
+                <span>Detalhes com identidade</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta" id="best">
+        <div class="container">
+          <div class="cta__box">
+            <h2 class="cta__title">Procura uma peça bonita, original e pensada especialmente para o seu bebé?</h2>
+            <p class="cta__text">
+              Escolha o nome, os tons e o estilo ideal para criar uma decoração personalizada que une delicadeza, personalidade e um toque verdadeiramente memorável.
+            </p>
+            <div class="cta__actions">
+              <a href="#contacto" class="button button--primary">Pedir personalizado</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer" id="contacto">
+      <div class="container site-footer__grid">
+        <div>
+          <strong>Little Moon</strong>
+          <p>
+            Decoração personalizada para quartos de bebé, presentes especiais e ambientes cheios de ternura e identidade.
+          </p>
+        </div>
+
+        <div>
+          <h4>Links</h4>
+          <ul>
+            <li><a href="#inicio">Home</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#sobre">Sobre nós</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Informações</h4>
+          <ul>
+            <li><a href="#">Envios</a></li>
+            <li><a href="#">Termos</a></li>
+            <li><a href="#">Privacidade</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Contactos</h4>
+          <ul>
+            <li>Instagram: @littlemoon</li>
+            <li>Email: hello@littlemoon.com</li>
+            <li>Pedidos personalizados por mensagem</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="container site-footer__copyright">
+        © Little Moon — feito com amor 🌙
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const navToggle = document.getElementById("navToggle");
+    const mobileNav = document.getElementById("mobileNav");
+
+    navToggle?.addEventListener("click", () => {
+      mobileNav.classList.toggle("open");
+      navToggle.textContent = mobileNav.classList.contains("open") ? "✕" : "☰";
+    });
+
+    mobileNav?.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        mobileNav.classList.remove("open");
+        navToggle.textContent = "☰";
+      });
+    });
+
+    const slides = document.querySelectorAll(".hero-slide");
+    const dots = document.querySelectorAll(".hero-slider__dot");
+    let currentSlide = 0;
+
+    function showSlide(index){
+      slides.forEach((slide, i) => slide.classList.toggle("active", i === index));
+      dots.forEach((dot, i) => dot.classList.toggle("active", i === index));
+      currentSlide = index;
+    }
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener("click", () => showSlide(index));
+    });
+
+    setInterval(() => {
+      const next = (currentSlide + 1) % slides.length;
+      showSlide(next);
+    }, 3600);
+  </script>
+</body>
+</html>
